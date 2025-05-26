@@ -75,7 +75,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element(By.ID, 'id_new_item')
         inputbox.send_keys('Buy flowers')
         inputbox.send_keys(Keys.ENTER)
-        self.wait_for_row_in_list_table('1:Buy flowers')
+        self.wait_for_row_in_list_table('1: Buy flowers')
 
         # 他注意到清单有个唯一的URL
         zhangsan_list_url = self.browser.current_url
@@ -92,11 +92,13 @@ class NewVisitorTest(LiveServerTestCase):
         page_text = self.browser.find_element(By.TAG_NAME, 'body').text
         self.assertNotIn('Buy flowers', page_text)
         self.assertNotIn('BGive a gift to Lisi', page_text)
+
         # 王五输入一个新待办事项，新建一个清单
         inputbox = self.browser.find_element(By.ID, 'id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
-        self.wait_for_row_in_list_table('1:Buy milk')
+        self.wait_for_row_in_list_table('1: Buy milk')
+
         # 王五获得了他的唯一URL
         wangwu_list_url = self.browser.current_url
         self.assertRegex(wangwu_list_url, '/lists/.+')
