@@ -103,8 +103,7 @@ class NewVisitorTest(LiveServerTestCase):
         wangwu_list_url = self.browser.current_url
         self.assertRegex(wangwu_list_url, '/lists/.+')
         self.assertNotEqual(wangwu_list_url, zhangsan_list_url)
-        #
-        这个页面还是没有张三的清单
+        #这个页面还是没有张三的清单
         page_text = self.browser.find_element(By.TAG_NAME, 'body').text
         self.assertNotIn('Buy flowers',page_text)
         self.assertIn('Buy milk', page_text)
